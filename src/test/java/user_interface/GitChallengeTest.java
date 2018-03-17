@@ -16,6 +16,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 public class GitChallengeTest {
 
     private HomePage homePage;
@@ -44,5 +47,6 @@ public class GitChallengeTest {
                 .enterDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
                 .addReadme(true)
                 .clickOnCreateRepositoryButton();
+        assertThat(repositoryPage.getRepositoryName(), is("lorem-ipsum-dolor"));
     }
 }
