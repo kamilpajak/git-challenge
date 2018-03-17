@@ -24,7 +24,10 @@ public class GitChallengeTest {
 
     @Test
     public void userShouldLoginAndCreateRepository() {
-        NewRepositoryPage newRepositoryPage = this.homePage.clickOnNewRepositoryButton();
-        newRepositoryPage.enterName("my-test-repository");
+        RepositoryCreationPage repositoryCreationPage = this.homePage.clickOnNewRepositoryButton();
+        RepositoryPage repositoryPage = repositoryCreationPage.enterName("lorem-ipsum-dolor")
+                .enterDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+                .addReadme(true)
+                .clickOnCreateRepositoryButton();
     }
 }

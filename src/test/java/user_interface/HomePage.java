@@ -9,8 +9,8 @@ public class HomePage {
 
     private SelenideElement newRepositoryButton = $("#your_repos a[href=\"/new\"]");
 
-    public NewRepositoryPage clickOnNewRepositoryButton() {
+    public RepositoryCreationPage clickOnNewRepositoryButton() {
         this.newRepositoryButton.click();
-        return page(NewRepositoryPage.class);
+        return page(RepositoryCreationPage.class);
     }
 }
