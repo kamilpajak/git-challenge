@@ -9,8 +9,16 @@ public class HomePage {
 
     private SelenideElement newRepositoryButton = $("#your_repos a[href=\"/new\"]");
 
+    private SelenideElement repositorySearchField = $("#your-repos-filter");
+
     public RepositoryCreationPage clickOnNewRepositoryButton() {
         this.newRepositoryButton.click();
         return page(RepositoryCreationPage.class);
+    }
+
+    public RepositoryPage selectRepository(String name) {
+        this.repositorySearchField.setValue(name);
+        $(String.format(".mini-repo-list-item [title$=\\/%s]", name)).click();
+        return page(RepositoryPage.class);
     }
 }

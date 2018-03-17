@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -31,6 +32,7 @@ public class GitChallengeTest {
 
     @Before
     public void setUp() throws IOException {
+        closeWebDriver();
         InputStream inputStream = new FileInputStream("application.properties");
         Properties properties = new Properties();
         properties.load(inputStream);
@@ -49,4 +51,10 @@ public class GitChallengeTest {
                 .clickOnCreateRepositoryButton();
         assertThat(repositoryPage.getRepositoryName(), is("lorem-ipsum-dolor"));
     }
+
+    @Test
+    public void userShouldLoginAndDeleteRepository() {
+        RepositoryPage repositoryPage = this.homePage.selectRepository("lorem-ipsum-dolor");
+    }
+
 }
