@@ -11,6 +11,11 @@ import user_interface.page.LoginPage;
 import user_interface.page.RepositoryCreationPage;
 import user_interface.page.RepositoryPage;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 public class GitChallengeTest {
 
     private HomePage homePage;
@@ -22,8 +27,14 @@ public class GitChallengeTest {
     }
 
     @Before
-    public void setUp() {
-        this.homePage = LoginPage.login("", "");
+    public void setUp() throws IOException {
+        InputStream inputStream = new FileInputStream("application.properties");
+        Properties properties = new Properties();
+        properties.load(inputStream);
+        this.homePage = LoginPage.login(
+                properties.getProperty("github.login"),
+                properties.getProperty("github.password")
+        );
     }
 
     @Test

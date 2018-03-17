@@ -16,13 +16,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>selenide</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
             <version>RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
             <version>RELEASE</version>
         </dependency>
         <dependency>
