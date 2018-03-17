@@ -1,4 +1,4 @@
-package user_interface;
+package user_interface.page;
 
 public class RepositoryPage {
 }

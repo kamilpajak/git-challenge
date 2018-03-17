@@ -6,6 +6,10 @@ import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import user_interface.page.HomePage;
+import user_interface.page.LoginPage;
+import user_interface.page.RepositoryCreationPage;
+import user_interface.page.RepositoryPage;
 
 public class GitChallengeTest {
 

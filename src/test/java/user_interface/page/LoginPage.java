@@ -1,4 +1,4 @@
-package user_interface;
+package user_interface.page;
 
 import static com.codeborne.selenide.Selenide.*;
 
