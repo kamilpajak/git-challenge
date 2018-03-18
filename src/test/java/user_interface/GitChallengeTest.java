@@ -64,6 +64,12 @@ public class GitChallengeTest {
     }
 
     @Test
+    public void userShouldLoginAndPushCommits() {
+        RepositoryPage repositoryPage = this.homePage.selectRepository("lorem-ipsum-dolor");
+        repositoryPage.createNewBranch("develop");
+    }
+
+    @Test
     public void userShouldLoginAndDeleteRepository() {
         RepositoryPage repositoryPage = this.homePage.selectRepository("lorem-ipsum-dolor");
         RepositorySettingsPage repositorySettingsPage = repositoryPage.getNavigationBar().clickOnSettings();
