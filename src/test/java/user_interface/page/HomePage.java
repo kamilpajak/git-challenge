@@ -21,4 +21,9 @@ public class HomePage {
         $(String.format(".mini-repo-list-item [title$=\\/%s]", name)).click();
         return page(RepositoryPage.class);
     }
+
+    public boolean repositoryExists(String name) {
+        this.repositorySearchField.setValue(name);
+        return $(String.format(".mini-repo-list-item [title$=\\/%s]", name)).exists();
+    }
 }

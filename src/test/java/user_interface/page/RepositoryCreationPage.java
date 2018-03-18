@@ -6,7 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-public class RepositoryCreationPage {
+public class RepositoryCreationPage extends RepositoryBasePage {
 
     private SelenideElement repositoryNameField = $("#repository_name");
 

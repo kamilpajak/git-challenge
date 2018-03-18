@@ -6,12 +6,10 @@ import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import user_interface.page.HomePage;
-import user_interface.page.LoginPage;
-import user_interface.page.RepositoryCreationPage;
-import user_interface.page.RepositoryPage;
+import user_interface.page.*;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -31,15 +29,28 @@ public class GitChallengeTest {
     }
 
     @Before
-    public void setUp() throws IOException {
+    public void setUp() {
         closeWebDriver();
-        InputStream inputStream = new FileInputStream("application.properties");
-        Properties properties = new Properties();
-        properties.load(inputStream);
         this.homePage = LoginPage.login(
-                properties.getProperty("github.login"),
-                properties.getProperty("github.password")
+                GitChallengeTest.getProperty("github.login"),
+                GitChallengeTest.getProperty("github.password")
         );
+    }
+
+    private static String getProperty(String key) {
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream("application.properties");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Properties properties = new Properties();
+        try {
+            properties.load(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return properties.getProperty(key);
     }
 
     @Test
@@ -49,12 +60,15 @@ public class GitChallengeTest {
                 .enterDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
                 .addReadme(true)
                 .clickOnCreateRepositoryButton();
-        assertThat(repositoryPage.getRepositoryName(), is("lorem-ipsum-dolor"));
+        assertThat(repositoryPage.getNavigationBar().getRepositoryName(), is("lorem-ipsum-dolor"));
     }
 
     @Test
     public void userShouldLoginAndDeleteRepository() {
         RepositoryPage repositoryPage = this.homePage.selectRepository("lorem-ipsum-dolor");
+        RepositorySettingsPage repositorySettingsPage = repositoryPage.getNavigationBar().clickOnSettings();
+        this.homePage = repositorySettingsPage.deleteRepository(GitChallengeTest.getProperty("github.password"));
+        assertThat(this.homePage.repositoryExists("lorem-ipsum-dolor"), is(Boolean.FALSE));
     }
 
 }
