@@ -3,6 +3,7 @@ package user_interface.page;
 import com.codeborne.selenide.Condition;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 
 public class RepositoryPage extends RepositoryBasePage {
 
@@ -14,7 +15,8 @@ public class RepositoryPage extends RepositoryBasePage {
         return this;
     }
 
-    public void createNewFile(String filename) {
-        $(".file-navigation button[type=submit]").click();
+    public RepositoryNewFilePage clickOnCreateNewFile() {
+        $(".file-navigation .BtnGroup-form button").click();
+        return page(RepositoryNewFilePage.class);
     }
 }

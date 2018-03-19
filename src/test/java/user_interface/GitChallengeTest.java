@@ -66,7 +66,8 @@ public class GitChallengeTest {
     @Test
     public void userShouldLoginAndPushCommits() {
         RepositoryPage repositoryPage = this.homePage.selectRepository("lorem-ipsum-dolor");
-        repositoryPage.createNewBranch("develop");
+        RepositoryNewFilePage repositoryNewFilePage = repositoryPage.createNewBranch("develop").clickOnCreateNewFile();
+        repositoryNewFilePage.setFilename("Cras et massa.txt").commitNewFile("Cras et massa id metus aliquet rutrum.");
     }
 
     @Test
