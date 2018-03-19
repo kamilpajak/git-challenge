@@ -1,5 +1,6 @@
 package user_interface.page;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -18,7 +19,7 @@ public class HomePage {
 
     public RepositoryPage selectRepository(String name) {
         this.repositorySearchField.setValue(name);
-        $(String.format(".mini-repo-list-item [title$=\\/%s]", name)).click();
+        $(String.format(".mini-repo-list-item [title$=\\/%s]", name)).should(Condition.exist).click();
         return page(RepositoryPage.class);
     }
 

@@ -80,7 +80,9 @@ public class GitChallengeTest {
         RepositoryPullRequestPage repositoryPullRequestPage = repositoryOpenPullRequestPage
                 .setBase("master")
                 .setCompare("develop")
+                .setTitle("Cras eu hendrerit turpis.")
                 .clickOnCreatePullRequest();
+        assertThat(repositoryPullRequestPage.getTitle(), is("Cras eu hendrerit turpis."));
     }
 
     @Test(priority = 4)

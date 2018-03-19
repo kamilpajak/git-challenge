@@ -13,17 +13,24 @@ public class RepositoryOpenPullRequestPage extends RepositoryBasePage {
 
     public RepositoryOpenPullRequestPage setBase(String name) {
         this.baseSelector.click();
+        this.baseSelector.$("button").shouldHave(Condition.attribute("aria-expanded", "true"));
         this.baseSelector.$("input").setValue(name);
-        this.baseSelector.$(".select-menu-list .last-visible").shouldHave(Condition.text(name)).click();
+        this.baseSelector.$(".navigation-focus").shouldHave(Condition.text(name)).click();
         this.baseSelector.$("span[title^=base]").shouldHave(Condition.attribute("title", String.format("base: %s", name)));
         return this;
     }
 
     public RepositoryOpenPullRequestPage setCompare(String name) {
         this.compareSelector.click();
+        this.compareSelector.$("button").shouldHave(Condition.attribute("aria-expanded", "true"));
         this.compareSelector.$("input").setValue(name);
-        this.compareSelector.$(".select-menu-list .last-visible").shouldHave(Condition.text(name)).click();
+        this.compareSelector.$(".navigation-focus").shouldHave(Condition.text(name)).click();
         this.compareSelector.$("span[title^=compare]").shouldHave(Condition.attribute("title", String.format("compare: %s", name)));
+        return this;
+    }
+
+    public RepositoryOpenPullRequestPage setTitle(String title) {
+        $("#pull_request_title").setValue(title);
         return this;
     }
 
