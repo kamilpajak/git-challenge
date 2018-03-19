@@ -11,12 +11,20 @@ public class RepositoryPage extends RepositoryBasePage {
         $(".branch-select-menu").click();
         $("#context-commitish-filter-field").should(Condition.appear).setValue(branch);
         $(".js-new-item-name").should(Condition.appear).click();
-        $(".branch-select-menu .js-menu-target").shouldHave(Condition.attribute("title", branch));
+        if (branch.length() > 14) {
+            $(".branch-select-menu .js-menu-target").shouldHave(Condition.attribute("title", branch));
+        } else {
+            $(".branch-select-menu .js-menu-target span").shouldHave(Condition.text(branch));
+        }
         return this;
     }
 
     public RepositoryNewFilePage clickOnCreateNewFile() {
         $(".file-navigation .BtnGroup-form button").click();
         return page(RepositoryNewFilePage.class);
+    }
+
+    public boolean fileExists(String filename) {
+        return $(String.format(".files .js-navigation-item .content a[title=\"%s\"]", filename)).exists();
     }
 }

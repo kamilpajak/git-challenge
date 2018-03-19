@@ -26,6 +26,8 @@ public class GitChallengeTest {
     public static void setUpClass() {
         ChromeDriverManager.getInstance().setup();
         Configuration.browser = WebDriverRunner.CHROME;
+        Configuration.timeout = 1000 * 8;
+        Configuration.collectionsTimeout = 1000 * 8;
     }
 
     @Before
@@ -67,7 +69,8 @@ public class GitChallengeTest {
     public void userShouldLoginAndPushCommits() {
         RepositoryPage repositoryPage = this.homePage.selectRepository("lorem-ipsum-dolor");
         RepositoryNewFilePage repositoryNewFilePage = repositoryPage.createNewBranch("develop").clickOnCreateNewFile();
-        repositoryNewFilePage.setFilename("Cras et massa.txt").commitNewFile("Cras et massa id metus aliquet rutrum.");
+        repositoryPage = repositoryNewFilePage.setFilename("Cras et massa.txt").commitNewFile("Cras et massa id metus aliquet rutrum.");
+        assertThat(repositoryPage.fileExists("Cras et massa.txt"), is(Boolean.TRUE));
     }
 
     @Test
