@@ -85,6 +85,11 @@ public class GitChallengeTest {
         assertThat(repositoryPullRequestPage.getTitle(), is("Cras eu hendrerit turpis."));
     }
 
+    @Test(priority = 3)
+    public void userShouldLoginAndAcceptPullRequest() {
+
+    }
+
     @Test(priority = 4)
     public void userShouldLoginAndDeleteRepository() {
         RepositoryPage repositoryPage = this.homePage.selectRepository("lorem-ipsum-dolor");
