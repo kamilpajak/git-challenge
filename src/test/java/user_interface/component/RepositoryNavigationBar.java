@@ -1,5 +1,6 @@
 package user_interface.component;
 
+import user_interface.page.RepositoryPullRequestListPage;
 import user_interface.page.RepositorySettingsPage;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -16,4 +17,8 @@ public class RepositoryNavigationBar {
         return page(RepositorySettingsPage.class);
     }
 
+    public RepositoryPullRequestListPage clickOnPullRequests() {
+        $(".reponav-item", 2).click();
+        return page(RepositoryPullRequestListPage.class);
+    }
 }

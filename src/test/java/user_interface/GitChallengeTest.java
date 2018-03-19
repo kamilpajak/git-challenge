@@ -80,14 +80,18 @@ public class GitChallengeTest {
         RepositoryPullRequestPage repositoryPullRequestPage = repositoryOpenPullRequestPage
                 .setBase("master")
                 .setCompare("develop")
-                .setTitle("Cras eu hendrerit turpis.")
+                .setTitle("Cras eu hendrerit turpis")
                 .clickOnCreatePullRequest();
-        assertThat(repositoryPullRequestPage.getTitle(), is("Cras eu hendrerit turpis."));
+        assertThat(repositoryPullRequestPage.getTitle(), is("Cras eu hendrerit turpis"));
     }
 
     @Test(priority = 3)
     public void userShouldLoginAndAcceptPullRequest() {
-
+        RepositoryPage repositoryPage = this.homePage.selectRepository("lorem-ipsum-dolor");
+        RepositoryPullRequestListPage repositoryPullRequestListPage = repositoryPage.getNavigationBar().clickOnPullRequests();
+        RepositoryPullRequestPage repositoryPullRequestPage = repositoryPullRequestListPage.selectPullRequest("Cras eu hendrerit turpis");
+        repositoryPullRequestPage.clickOnMergePullRequest();
+        assertThat(repositoryPullRequestPage.isMerged(), is(Boolean.TRUE));
     }
 
     @Test(priority = 4)
