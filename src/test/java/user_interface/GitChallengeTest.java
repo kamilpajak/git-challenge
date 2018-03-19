@@ -3,9 +3,9 @@ package user_interface;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import user_interface.page.*;
 
 import java.io.FileInputStream;
@@ -30,7 +30,7 @@ public class GitChallengeTest {
         Configuration.collectionsTimeout = 1000 * 8;
     }
 
-    @Before
+    @BeforeMethod
     public void setUp() {
         closeWebDriver();
         this.homePage = LoginPage.login(
@@ -55,7 +55,7 @@ public class GitChallengeTest {
         return properties.getProperty(key);
     }
 
-    @Test
+    @Test(priority = 0)
     public void userShouldLoginAndCreateRepository() {
         RepositoryCreationPage repositoryCreationPage = this.homePage.clickOnNewRepositoryButton();
         RepositoryPage repositoryPage = repositoryCreationPage.enterName("lorem-ipsum-dolor")
@@ -65,7 +65,7 @@ public class GitChallengeTest {
         assertThat(repositoryPage.getNavigationBar().getRepositoryName(), is("lorem-ipsum-dolor"));
     }
 
-    @Test
+    @Test(priority = 1)
     public void userShouldLoginAndPushCommits() {
         RepositoryPage repositoryPage = this.homePage.selectRepository("lorem-ipsum-dolor");
         RepositoryNewFilePage repositoryNewFilePage = repositoryPage.createNewBranch("develop").clickOnCreateNewFile();
@@ -73,7 +73,7 @@ public class GitChallengeTest {
         assertThat(repositoryPage.fileExists("Cras et massa.txt"), is(Boolean.TRUE));
     }
 
-    @Test
+    @Test(priority = 4)
     public void userShouldLoginAndDeleteRepository() {
         RepositoryPage repositoryPage = this.homePage.selectRepository("lorem-ipsum-dolor");
         RepositorySettingsPage repositorySettingsPage = repositoryPage.getNavigationBar().clickOnSettings();
