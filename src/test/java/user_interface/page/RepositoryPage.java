@@ -24,6 +24,11 @@ public class RepositoryPage extends RepositoryBasePage {
         return page(RepositoryNewFilePage.class);
     }
 
+    public RepositoryOpenPullRequestPage clickOnNewPullRequest() {
+        $(".new-pull-request-btn").click();
+        return page(RepositoryOpenPullRequestPage.class);
+    }
+
     public boolean fileExists(String filename) {
         return $(String.format(".files .js-navigation-item .content a[title=\"%s\"]", filename)).exists();
     }

@@ -73,6 +73,16 @@ public class GitChallengeTest {
         assertThat(repositoryPage.fileExists("Cras et massa.txt"), is(Boolean.TRUE));
     }
 
+    @Test(priority = 2)
+    public void userShouldLoginAndCreatePullRequest() {
+        RepositoryPage repositoryPage = this.homePage.selectRepository("lorem-ipsum-dolor");
+        RepositoryOpenPullRequestPage repositoryOpenPullRequestPage = repositoryPage.clickOnNewPullRequest();
+        RepositoryPullRequestPage repositoryPullRequestPage = repositoryOpenPullRequestPage
+                .setBase("master")
+                .setCompare("develop")
+                .clickOnCreatePullRequest();
+    }
+
     @Test(priority = 4)
     public void userShouldLoginAndDeleteRepository() {
         RepositoryPage repositoryPage = this.homePage.selectRepository("lorem-ipsum-dolor");
