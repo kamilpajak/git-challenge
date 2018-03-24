@@ -38,3 +38,11 @@ Feature: Git challenge
     And user selects pull request "Cras eu hendrerit turpis" from the list
     And user clicks on Merge Pull Request button
     Then user sees that pull request is merged
+
+  Scenario: User deletes a repository
+    When user selects repository "lorem-ipsum-dolor"
+    And user clicks on Settings button
+    And user clicks on Delete Repository button
+    And user enters repository name to confirm delete
+    Then user sees that repository "lorem-ipsum-dolor" does not exist
+

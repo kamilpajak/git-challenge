@@ -10,8 +10,12 @@ public class RepositorySettingsPage extends RepositoryBasePage {
 
     private SelenideElement deleteRepositoryRow = $(".Box--danger .Box-row", 3);
 
-    public HomePage deleteRepository(String password) {
+    public RepositorySettingsPage clickOnDeleteRepository() {
         this.deleteRepositoryRow.$("button").click();
+        return this;
+    }
+
+    public HomePage confirmDelete(String password) {
         this.deleteRepositoryRow.$("input[name=verify]").setValue(this.getNavigationBar().getRepositoryName());
         this.deleteRepositoryRow.$("button[type=submit]").shouldBe(Condition.enabled).click();
         if ($("#sudo_password").exists()) {

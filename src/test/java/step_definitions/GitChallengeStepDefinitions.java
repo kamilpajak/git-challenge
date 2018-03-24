@@ -35,6 +35,8 @@ public class GitChallengeStepDefinitions implements En {
 
     private RepositoryPullRequestListPage repositoryPullRequestListPage;
 
+    private RepositorySettingsPage repositorySettingsPage;
+
     public GitChallengeStepDefinitions() {
         this.Given("^user opens browser with GitHub login page$", () -> {
             setUp();
@@ -118,6 +120,18 @@ public class GitChallengeStepDefinitions implements En {
         });
         this.Then("^user sees that pull request is merged$", () -> {
             assertThat(this.repositoryPullRequestPage.isMerged(), is(Boolean.TRUE));
+        });
+        this.And("^user clicks on Settings button$", () -> {
+            this.repositorySettingsPage = this.repositoryPage.getNavigationBar().clickOnSettings();
+        });
+        this.And("^user clicks on Delete Repository button$", () -> {
+            this.repositorySettingsPage.clickOnDeleteRepository();
+        });
+        this.And("^user enters repository name to confirm delete$", () -> {
+            this.homePage = this.repositorySettingsPage.confirmDelete(getProperty("github.password"));
+        });
+        this.Then("^user sees that repository \"([^\"]*)\" does not exist$", (String repositoryName) -> {
+            assertThat(this.homePage.repositoryExists(repositoryName), is(Boolean.FALSE));
         });
     }
 
