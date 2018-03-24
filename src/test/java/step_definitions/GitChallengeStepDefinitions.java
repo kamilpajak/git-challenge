@@ -33,6 +33,8 @@ public class GitChallengeStepDefinitions implements En {
 
     private RepositoryPullRequestPage repositoryPullRequestPage;
 
+    private RepositoryPullRequestListPage repositoryPullRequestListPage;
+
     public GitChallengeStepDefinitions() {
         this.Given("^user opens browser with GitHub login page$", () -> {
             setUp();
@@ -104,6 +106,18 @@ public class GitChallengeStepDefinitions implements En {
         });
         this.Then("^user lands on \"([^\"]*)\" pull request page$", (String title) -> {
             assertThat(this.repositoryPullRequestPage.getTitle(), is(title));
+        });
+        this.And("^user clicks on Pull Requests button$", () -> {
+            this.repositoryPullRequestListPage = this.repositoryPage.getNavigationBar().clickOnPullRequests();
+        });
+        this.And("^user selects pull request \"([^\"]*)\" from the list$", (String pullRequest) -> {
+            this.repositoryPullRequestPage = this.repositoryPullRequestListPage.selectPullRequest(pullRequest);
+        });
+        this.And("^user clicks on Merge Pull Request button$", () -> {
+            this.repositoryPullRequestPage.clickOnMergePullRequest();
+        });
+        this.Then("^user sees that pull request is merged$", () -> {
+            assertThat(this.repositoryPullRequestPage.isMerged(), is(Boolean.TRUE));
         });
     }
 

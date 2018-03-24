@@ -31,3 +31,10 @@ Feature: Git challenge
     And user fills in Title with "Cras eu hendrerit turpis"
     And user clicks on Create Pull Request button
     Then user lands on "Cras eu hendrerit turpis" pull request page
+
+  Scenario: User accepts a pull request
+    When user selects repository "lorem-ipsum-dolor"
+    And user clicks on Pull Requests button
+    And user selects pull request "Cras eu hendrerit turpis" from the list
+    And user clicks on Merge Pull Request button
+    Then user sees that pull request is merged
