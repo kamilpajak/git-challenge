@@ -1,9 +1,12 @@
 package user_interface.page;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.Selenide.*;
 
 public class LoginPage {
+
+    public LoginPage() {
+        open("https://github.com/login");
+    }
 
     public LoginPage setLogin(String login) {
         $("#login_field").setValue(login);
