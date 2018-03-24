@@ -4,10 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java8.En;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
-import user_interface.page.HomePage;
-import user_interface.page.LoginPage;
-import user_interface.page.RepositoryCreationPage;
-import user_interface.page.RepositoryPage;
+import user_interface.page.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,6 +27,12 @@ public class GitChallengeStepDefinitions implements En {
 
     private RepositoryPage repositoryPage;
 
+    private RepositoryNewFilePage repositoryNewFilePage;
+
+    private RepositoryOpenPullRequestPage repositoryOpenPullRequestPage;
+
+    private RepositoryPullRequestPage repositoryPullRequestPage;
+
     public GitChallengeStepDefinitions() {
         this.Given("^user opens browser with GitHub login page$", () -> {
             setUp();
@@ -41,13 +44,13 @@ public class GitChallengeStepDefinitions implements En {
         this.And("^user fills in Password with data from file$", () -> {
             this.loginPage.setPassword(getProperty("github.password"));
         });
-        this.And("^user clicks on Sign In Button$", () -> {
+        this.And("^user clicks on Sign In button$", () -> {
             this.homePage = this.loginPage.clickOnSignInButton();
         });
         this.Then("^user lands on home page$", () -> {
             assertThat(url(), is("https://github.com/"));
         });
-        this.When("^user clicks on New Repository Button$", () -> {
+        this.When("^user clicks on New Repository button$", () -> {
             this.repositoryCreationPage = this.homePage.clickOnNewRepositoryButton();
         });
         this.And("^user fills in Repository name with \"([^\"]*)\"$", (String repositoryName) -> {
@@ -56,12 +59,51 @@ public class GitChallengeStepDefinitions implements En {
         this.And("^user fills in Description with \"([^\"]*)\"$", (String description) -> {
             this.repositoryCreationPage.enterDescription(description);
         });
-        this.And("^user clicks on Create Repository Button$", () -> {
+        this.And("^user checks Initialize this repository with README option$", () -> {
+            this.repositoryCreationPage.addReadme(true);
+        });
+        this.And("^user clicks on Create Repository button$", () -> {
             this.repositoryPage = this.repositoryCreationPage.clickOnCreateRepositoryButton();
         });
         this.Then("^user lands on \"([^\"]*)\" repository page$", (String repositoryName) -> {
             String fetchedRepositoryName = this.repositoryPage.getNavigationBar().getRepositoryName();
             assertThat(fetchedRepositoryName, is(repositoryName));
+        });
+        this.When("^user selects repository \"([^\"]*)\"$", (String repositoryName) -> {
+            this.repositoryPage = this.homePage.selectRepository(repositoryName);
+        });
+        this.And("^user creates a new branch with name \"([^\"]*)\"$", (String branch) -> {
+            this.repositoryPage.createNewBranch(branch);
+        });
+        this.And("^user clicks on Create New File button$", () -> {
+            this.repositoryNewFilePage = this.repositoryPage.clickOnCreateNewFile();
+        });
+        this.And("^user fills in Filename with \"([^\"]*)\"$", (String filename) -> {
+            this.repositoryNewFilePage.setFilename(filename);
+        });
+        this.And("^user commits new file with message \"([^\"]*)\"$", (String message) -> {
+            this.repositoryPage = this.repositoryNewFilePage.commitNewFile(message);
+        });
+        this.Then("^user sees \"([^\"]*)\" file on a list$", (String filename) -> {
+            assertThat(this.repositoryPage.fileExists(filename), is(Boolean.TRUE));
+        });
+        this.And("^user clicks on New Pull Request button$", () -> {
+            this.repositoryOpenPullRequestPage = this.repositoryPage.clickOnNewPullRequest();
+        });
+        this.And("^user sets Base as \"([^\"]*)\"$", (String branch) -> {
+            this.repositoryOpenPullRequestPage.setBase(branch);
+        });
+        this.And("^user sets Compare as \"([^\"]*)\"$", (String branch) -> {
+            this.repositoryOpenPullRequestPage.setCompare(branch);
+        });
+        this.And("^user fills in Title with \"([^\"]*)\"$", (String title) -> {
+            this.repositoryOpenPullRequestPage.setTitle(title);
+        });
+        this.And("^user clicks on Create Pull Request button$", () -> {
+            this.repositoryPullRequestPage = this.repositoryOpenPullRequestPage.clickOnCreatePullRequest();
+        });
+        this.Then("^user lands on \"([^\"]*)\" pull request page$", (String title) -> {
+            assertThat(this.repositoryPullRequestPage.getTitle(), is(title));
         });
     }
 
