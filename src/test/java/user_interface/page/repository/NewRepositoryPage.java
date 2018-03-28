@@ -1,4 +1,4 @@
-package user_interface.page;
+package user_interface.page.repository;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -6,7 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-public class RepositoryCreationPage extends RepositoryBasePage {
+public class NewRepositoryPage extends RepositoryBasePage {
 
     private SelenideElement repositoryNameField = $("#repository_name");
 
@@ -16,23 +16,23 @@ public class RepositoryCreationPage extends RepositoryBasePage {
 
     private SelenideElement createRepositoryButton = $("#new_repository button[type=submit]");
 
-    public RepositoryCreationPage enterName(String name) {
+    public NewRepositoryPage enterName(String name) {
         this.repositoryNameField.setValue(name).shouldHave(Condition.cssClass("is-autocheck-successful"));
         return this;
     }
 
-    public RepositoryCreationPage enterDescription(String description) {
+    public NewRepositoryPage enterDescription(String description) {
         this.repositoryDescriptionField.setValue(description);
         return this;
     }
 
-    public RepositoryCreationPage addReadme(boolean value) {
+    public NewRepositoryPage addReadme(boolean value) {
         this.initializeWithReadmeCheckbox.setSelected(value);
         return this;
     }
 
-    public RepositoryPage clickOnCreateRepositoryButton() {
+    public MainPage clickOnCreateRepositoryButton() {
         this.createRepositoryButton.shouldBe(Condition.enabled).click();
-        return page(RepositoryPage.class);
+        return page(MainPage.class);
     }
 }

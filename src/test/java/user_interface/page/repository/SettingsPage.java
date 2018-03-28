@@ -1,16 +1,17 @@
-package user_interface.page;
+package user_interface.page.repository;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import user_interface.page.HomePage;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-public class RepositorySettingsPage extends RepositoryBasePage {
+public class SettingsPage extends RepositoryBasePage {
 
     private SelenideElement deleteRepositoryRow = $(".Box--danger .Box-row", 3);
 
-    public RepositorySettingsPage clickOnDeleteRepository() {
+    public SettingsPage clickOnDeleteRepository() {
         this.deleteRepositoryRow.$("button").click();
         return this;
     }

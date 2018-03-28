@@ -1,7 +1,7 @@
 package user_interface.component;
 
-import user_interface.page.RepositoryPullRequestListPage;
-import user_interface.page.RepositorySettingsPage;
+import user_interface.page.repository.PullRequestListPage;
+import user_interface.page.repository.SettingsPage;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
@@ -12,13 +12,13 @@ public class RepositoryNavigationBar {
         return $(".public strong[itemprop=name]").getText();
     }
 
-    public RepositorySettingsPage clickOnSettings() {
+    public SettingsPage clickOnSettings() {
         $(".reponav-item", 6).click();
-        return page(RepositorySettingsPage.class);
+        return page(SettingsPage.class);
     }
 
-    public RepositoryPullRequestListPage clickOnPullRequests() {
+    public PullRequestListPage clickOnPullRequests() {
         $(".reponav-item", 2).click();
-        return page(RepositoryPullRequestListPage.class);
+        return page(PullRequestListPage.class);
     }
 }
