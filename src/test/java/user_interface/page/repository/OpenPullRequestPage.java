@@ -1,4 +1,4 @@
-package user_interface.page;
+package user_interface.page.repository;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -6,13 +6,13 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-public class RepositoryOpenPullRequestPage extends RepositoryBasePage {
+public class OpenPullRequestPage extends RepositoryBasePage {
 
     private SelenideElement baseSelector = $(".range-cross-repo-pair .commitish-suggester", 0);
 
     private SelenideElement compareSelector = $(".range-cross-repo-pair .commitish-suggester", 1);
 
-    public RepositoryOpenPullRequestPage setBase(String name) {
+    public OpenPullRequestPage setBase(String name) {
         String blankslateText = $(".blankslate").getText();
         this.baseSelector.click();
         this.baseSelector.$("button").shouldHave(Condition.attribute("aria-expanded", "true"));
@@ -23,7 +23,7 @@ public class RepositoryOpenPullRequestPage extends RepositoryBasePage {
         return this;
     }
 
-    public RepositoryOpenPullRequestPage setCompare(String name) {
+    public OpenPullRequestPage setCompare(String name) {
         String blankslateText = $(".blankslate").getText();
         this.compareSelector.click();
         this.compareSelector.$("button").shouldHave(Condition.attribute("aria-expanded", "true"));
@@ -34,13 +34,13 @@ public class RepositoryOpenPullRequestPage extends RepositoryBasePage {
         return this;
     }
 
-    public RepositoryOpenPullRequestPage setTitle(String title) {
+    public OpenPullRequestPage setTitle(String title) {
         $("#pull_request_title").setValue(title);
         return this;
     }
 
-    public RepositoryPullRequestPage clickOnCreatePullRequest() {
+    public PullRequestPage clickOnCreatePullRequest() {
         $("#new_pull_request button[type=submit]").click();
-        return page(RepositoryPullRequestPage.class);
+        return page(PullRequestPage.class);
     }
 }

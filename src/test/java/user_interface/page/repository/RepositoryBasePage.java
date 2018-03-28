@@ -1,4 +1,4 @@
-package user_interface.page;
+package user_interface.page.repository;
 
 import user_interface.component.RepositoryNavigationBar;
 

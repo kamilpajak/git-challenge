@@ -1,13 +1,13 @@
-package user_interface.page;
+package user_interface.page.repository;
 
 import com.codeborne.selenide.Condition;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-public class RepositoryPage extends RepositoryBasePage {
+public class MainPage extends RepositoryBasePage {
 
-    public RepositoryPage createNewBranch(String branch) {
+    public MainPage createNewBranch(String branch) {
         $(".branch-select-menu").click();
         $("#context-commitish-filter-field").should(Condition.appear).setValue(branch);
         $(".js-new-item-name").should(Condition.appear).click();
@@ -19,14 +19,14 @@ public class RepositoryPage extends RepositoryBasePage {
         return this;
     }
 
-    public RepositoryNewFilePage clickOnCreateNewFile() {
+    public NewFilePage clickOnCreateNewFile() {
         $(".file-navigation .BtnGroup-form button").click();
-        return page(RepositoryNewFilePage.class);
+        return page(NewFilePage.class);
     }
 
-    public RepositoryOpenPullRequestPage clickOnNewPullRequest() {
+    public OpenPullRequestPage clickOnNewPullRequest() {
         $(".new-pull-request-btn").click();
-        return page(RepositoryOpenPullRequestPage.class);
+        return page(OpenPullRequestPage.class);
     }
 
     public boolean fileExists(String filename) {

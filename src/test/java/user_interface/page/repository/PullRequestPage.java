@@ -1,16 +1,16 @@
-package user_interface.page;
+package user_interface.page.repository;
 
 import com.codeborne.selenide.Condition;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class RepositoryPullRequestPage extends RepositoryBasePage {
+public class PullRequestPage extends RepositoryBasePage {
 
     public String getTitle() {
         return $(".js-issue-title").getText();
     }
 
-    public RepositoryPullRequestPage clickOnMergePullRequest() {
+    public PullRequestPage clickOnMergePullRequest() {
         $(".merge-message [type=submit]").click();
         $(".commit-form-actions [type=submit]").click();
         $(".TableObject-item .State").shouldHave(Condition.text("merged"));

@@ -4,10 +4,22 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class LoginPage {
 
-    public static HomePage login(String login, String password) {
+    public LoginPage() {
         open("https://github.com/login");
+    }
+
+    public LoginPage setLogin(String login) {
         $("#login_field").setValue(login);
-        $("#password").setValue(password).pressEnter();
+        return this;
+    }
+
+    public LoginPage setPassword(String password) {
+        $("#password").setValue(password);
+        return this;
+    }
+
+    public HomePage clickOnSignInButton() {
+        $("[type=submit]").click();
         return page(HomePage.class);
     }
 }
