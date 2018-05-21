@@ -10,9 +10,9 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class HomePage {
 
-    private SelenideElement newRepositoryButton = $("#your_repos a[href=\"/new\"]");
+    private SelenideElement newRepositoryButton = $(".js-repos-container a[href=\"/new\"]");
 
-    private SelenideElement repositorySearchField = $("#your-repos-filter");
+    private SelenideElement repositorySearchField = $("#dashboard-repos-filter");
 
     public NewRepositoryPage clickOnNewRepositoryButton() {
         this.newRepositoryButton.click();
@@ -21,12 +21,12 @@ public class HomePage {
 
     public MainPage selectRepository(String name) {
         this.repositorySearchField.setValue(name);
-        $(String.format(".mini-repo-list-item [title$=\\/%s]", name)).should(Condition.exist).click();
+        $(String.format("[data-filterable-for=dashboard-repos-filter] [title=%s]", name)).should(Condition.exist).click();
         return page(MainPage.class);
     }
 
     public boolean repositoryExists(String name) {
         this.repositorySearchField.setValue(name);
-        return $(String.format(".mini-repo-list-item [title$=\\/%s]", name)).exists();
+        return $(String.format("[data-filterable-for=dashboard-repos-filter] [title=%s]", name)).exists();
     }
 }
