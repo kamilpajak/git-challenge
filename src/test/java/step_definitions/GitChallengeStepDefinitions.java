@@ -139,10 +139,18 @@ public class GitChallengeStepDefinitions implements En {
 
     private static void setUp() {
         closeWebDriver();
-        ChromeDriverManager.getInstance().setup();
-        Configuration.browser = WebDriverRunner.CHROME;
         Configuration.timeout = 1000 * 8;
         Configuration.collectionsTimeout = 1000 * 8;
+        ChromeDriverManager.getInstance().setup();
+        Configuration.browser = WebDriverRunner.CHROME;
+        switch (getProperty("mode.headless")) {
+            case "true":
+                Configuration.headless = true;
+                break;
+            case "false":
+                Configuration.headless = false;
+                break;
+        }
     }
 
     private static String getProperty(String key) {
