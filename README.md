@@ -12,6 +12,8 @@ Before running tests you need to copy `application.properties.example` to `appli
 # ===================================================================
 github.login=login
 github.password=password
+# ===================================================================
+mode.headless=false
 ```
 
 ## Running the tests
