@@ -10,10 +10,10 @@ Before running tests you need to copy `application.properties.example` to `appli
 # ===================================================================
 # GITHUB CREDENTIALS
 # ===================================================================
-github.login=login
-github.password=password
+github.login=
+github.password=
 # ===================================================================
-mode.headless=false
+selenide.grid=
 ```
 
 ## Running the tests
