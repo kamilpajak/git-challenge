@@ -9,10 +9,10 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class SettingsPage extends RepositoryBasePage {
 
-    private SelenideElement deleteRepositoryRow = $(".Box--danger .btn", 2);
+    private SelenideElement deleteRepositoryRow = $(".Box--danger .Box-row", 3);
 
     public SettingsPage clickOnDeleteRepository() {
-        this.deleteRepositoryRow.$("button").click();
+        this.deleteRepositoryRow.$(".btn").click();
         return this;
     }
 
