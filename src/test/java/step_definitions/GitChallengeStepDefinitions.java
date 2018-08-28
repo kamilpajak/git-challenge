@@ -139,6 +139,7 @@ public class GitChallengeStepDefinitions implements En {
     }
 
     private static void setUp() {
+        closeWebDriver();
         String grid = getProperty("selenide.grid");
         if (StringUtils.isNotBlank(grid)) {
             Configuration.remote = grid;
@@ -147,7 +148,6 @@ public class GitChallengeStepDefinitions implements En {
             ChromeDriverManager.getInstance().setup();
             Configuration.browser = WebDriverRunner.CHROME;
         }
-        closeWebDriver();
         Configuration.timeout = 1000 * 8;
         Configuration.collectionsTimeout = 1000 * 8;
     }
