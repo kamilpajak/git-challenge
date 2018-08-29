@@ -4,7 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java8.En;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.validator.routines.UrlValidator;
 import user_interface.page.HomePage;
 import user_interface.page.LoginPage;
 import user_interface.page.repository.*;
@@ -140,9 +140,9 @@ public class GitChallengeStepDefinitions implements En {
 
     private static void setUp() {
         closeWebDriver();
-        String grid = getProperty("selenide.grid");
-        if (StringUtils.isNotBlank(grid)) {
-            Configuration.remote = grid;
+        String url = getProperty("selenide.grid");
+        if (UrlValidator.getInstance().isValid(url)) {
+            Configuration.remote = url;
             Configuration.browser = "chrome";
         } else {
             ChromeDriverManager.getInstance().setup();
