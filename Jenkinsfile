@@ -1,13 +1,22 @@
 pipeline {
-  agent any
-  stages {
-    stage('Preparation') {
-      steps {
-        sh 'sh "\'${mvnHome}/bin/mvn\' clean test"'
-      }
+    agent any
+    tools { 
+        maven 'Maven 3.3.9' 
     }
-  }
-  environment {
-    mvnHome = 'tool \'M3\''
-  }
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' 
+            }
+        }
+
+        stage ('Build') {
+            steps {
+                echo 'This is a minimal pipeline.'
+            }
+        }
+    }
 }
