@@ -8,7 +8,7 @@ pipeline {
  stages {
   stage('Initialize') {
    steps {
-
+    sh 'ls -lA'
    }
   }
 
