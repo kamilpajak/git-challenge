@@ -6,13 +6,13 @@ pipeline {
   maven 'Maven 3.5.4'
  }
  stages {
-  stage('Initialize') {
+  stage('Initialization') {
    steps {
     sh 'ls -lA'
    }
   }
 
-  stage('Build') {
+  stage('Testing') {
    steps {
     sh 'mvn clean install'
    }
