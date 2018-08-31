@@ -9,6 +9,7 @@ pipeline {
   stage('Initialization') {
    steps {
     cleanWs()
+    git 'https://github.com/kamilpajak/git-challenge.git'
     withCredentials([file(credentialsId: 'git-challenge.application.properties', variable: 'SECRET')]) {
      sh 'cp $SECRET application.properties'
     }
