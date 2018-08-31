@@ -3,8 +3,15 @@ pipeline {
   stages {
     stage('Preparation') {
       steps {
-        sh 'sh \'mvn clean test\''
+        sh '''if (isUnix()) {
+  sh "\'${mvnHome}/bin/mvn\' clean test"
+} else {
+  bat(/"${mvnHome}\\bin\\mvn" clean test/)
+}'''
+        }
       }
     }
+    environment {
+      mvnHome = 'tool \'M3\''
+    }
   }
-}
