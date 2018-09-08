@@ -17,22 +17,22 @@ public class NewRepositoryPage extends RepositoryBasePage {
     private SelenideElement createRepositoryButton = $("#new_repository button[type=submit]");
 
     public NewRepositoryPage enterName(String name) {
-        this.repositoryNameField.setValue(name).shouldHave(Condition.cssClass("is-autocheck-successful"));
+        repositoryNameField.setValue(name).shouldHave(Condition.cssClass("is-autocheck-successful"));
         return this;
     }
 
     public NewRepositoryPage enterDescription(String description) {
-        this.repositoryDescriptionField.setValue(description);
+        repositoryDescriptionField.setValue(description);
         return this;
     }
 
     public NewRepositoryPage addReadme(boolean value) {
-        this.initializeWithReadmeCheckbox.setSelected(value);
+        initializeWithReadmeCheckbox.setSelected(value);
         return this;
     }
 
     public MainPage clickOnCreateRepositoryButton() {
-        this.createRepositoryButton.shouldBe(Condition.enabled).click();
+        createRepositoryButton.shouldBe(Condition.enabled).click();
         return page(MainPage.class);
     }
 }

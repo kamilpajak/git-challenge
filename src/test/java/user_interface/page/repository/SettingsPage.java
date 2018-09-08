@@ -12,13 +12,13 @@ public class SettingsPage extends RepositoryBasePage {
     private SelenideElement deleteRepositoryRow = $(".Box--danger .Box-row", 3);
 
     public SettingsPage clickOnDeleteRepository() {
-        this.deleteRepositoryRow.$(".btn").click();
+        deleteRepositoryRow.$(".btn").click();
         return this;
     }
 
     public HomePage confirmDelete(String password) {
-        this.deleteRepositoryRow.$("input[name=verify]").setValue(this.getNavigationBar().getRepositoryName());
-        this.deleteRepositoryRow.$("button[type=submit]").shouldBe(Condition.enabled).click();
+        deleteRepositoryRow.$("input[name=verify]").setValue(getNavigationBar().getRepositoryName());
+        deleteRepositoryRow.$("button[type=submit]").shouldBe(Condition.enabled).click();
         if ($("#sudo_password").exists()) {
             $("#sudo_password").setValue(password).pressEnter();
         }
