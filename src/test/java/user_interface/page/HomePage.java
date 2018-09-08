@@ -15,18 +15,18 @@ public class HomePage {
     private SelenideElement repositorySearchField = $("#dashboard-repos-filter");
 
     public NewRepositoryPage clickOnNewRepositoryButton() {
-        this.newRepositoryButton.click();
+        newRepositoryButton.click();
         return page(NewRepositoryPage.class);
     }
 
     public MainPage selectRepository(String name) {
-        this.repositorySearchField.setValue(name);
+        repositorySearchField.setValue(name);
         $(String.format("[data-filterable-for=dashboard-repos-filter] [title=%s]", name)).should(Condition.exist).click();
         return page(MainPage.class);
     }
 
     public boolean repositoryExists(String name) {
-        this.repositorySearchField.setValue(name);
+        repositorySearchField.setValue(name);
         return $(String.format("[data-filterable-for=dashboard-repos-filter] [title=%s]", name)).exists();
     }
 }

@@ -7,6 +7,6 @@ public abstract class RepositoryBasePage {
     private RepositoryNavigationBar navigationBar = new RepositoryNavigationBar();
 
     public RepositoryNavigationBar getNavigationBar() {
-        return this.navigationBar;
+        return navigationBar;
     }
 }
