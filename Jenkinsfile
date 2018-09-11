@@ -2,6 +2,9 @@
 
 pipeline {
     agent any
+    triggers {
+        cron('H H/3 * * *')
+    }
     tools {
         maven 'Maven 3.5.4'
     }
