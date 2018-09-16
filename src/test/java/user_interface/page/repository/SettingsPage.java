@@ -2,7 +2,7 @@ package user_interface.page.repository;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import user_interface.page.HomePage;
+import user_interface.page.LandingPage;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
@@ -16,12 +16,12 @@ public class SettingsPage extends RepositoryBasePage {
         return this;
     }
 
-    public HomePage confirmDelete(String password) {
+    public LandingPage confirmDelete(String password) {
         deleteRepositoryRow.$("input[name=verify]").setValue(getNavigationBar().getRepositoryName());
         deleteRepositoryRow.$("button[type=submit]").shouldBe(Condition.enabled).click();
         if ($("#sudo_password").exists()) {
             $("#sudo_password").setValue(password).pressEnter();
         }
-        return page(HomePage.class);
+        return page(LandingPage.class);
     }
 }

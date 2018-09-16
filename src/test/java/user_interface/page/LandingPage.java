@@ -8,7 +8,7 @@ import user_interface.page.repository.NewRepositoryPage;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-public class HomePage {
+public class LandingPage {
 
     private SelenideElement newRepositoryButton = $(".js-repos-container a[href=\"/new\"]");
 
