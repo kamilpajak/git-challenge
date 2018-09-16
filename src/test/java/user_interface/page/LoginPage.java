@@ -18,8 +18,8 @@ public class LoginPage {
         return this;
     }
 
-    public HomePage clickOnSignInButton() {
+    public LandingPage clickOnSignInButton() {
         $("[type=submit]").click();
-        return page(HomePage.class);
+        return page(LandingPage.class);
     }
 }

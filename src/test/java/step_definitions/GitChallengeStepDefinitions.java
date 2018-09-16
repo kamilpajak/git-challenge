@@ -5,7 +5,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java8.En;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.apache.commons.validator.routines.UrlValidator;
-import user_interface.page.HomePage;
+import user_interface.page.LandingPage;
 import user_interface.page.LoginPage;
 import user_interface.page.repository.*;
 
@@ -24,7 +24,7 @@ public class GitChallengeStepDefinitions implements En {
 
     private LoginPage loginPage;
 
-    private HomePage homePage;
+    private LandingPage landingPage;
 
     private NewRepositoryPage newRepositoryPage;
 
@@ -47,15 +47,15 @@ public class GitChallengeStepDefinitions implements En {
         });
         When("^user fills in Login with data from file$", () -> loginPage.setLogin(getProperty("github.login")));
         And("^user fills in Password with data from file$", () -> loginPage.setPassword(getProperty("github.password")));
-        And("^user clicks on Sign In button$", () -> homePage = loginPage.clickOnSignInButton());
-        Then("^user lands on home page$", () -> assertThat(url(), is("https://github.com/")));
-        When("^user clicks on New Repository button$", () -> newRepositoryPage = homePage.clickOnNewRepositoryButton());
+        And("^user clicks on Sign In button$", () -> landingPage = loginPage.clickOnSignInButton());
+        Then("^user lands on landing page$", () -> assertThat(url(), is("https://github.com/")));
+        When("^user clicks on New Repository button$", () -> newRepositoryPage = landingPage.clickOnNewRepositoryButton());
         And("^user fills in Repository name with \"([^\"]*)\"$", (String repositoryName) -> newRepositoryPage.enterName(repositoryName));
         And("^user fills in Description with \"([^\"]*)\"$", (String description) -> newRepositoryPage.enterDescription(description));
         And("^user checks Initialize this repository with README option$", () -> newRepositoryPage.addReadme(true));
         And("^user clicks on Create Repository button$", () -> mainPage = newRepositoryPage.clickOnCreateRepositoryButton());
         Then("^user lands on \"([^\"]*)\" repository page$", (String repositoryName) -> assertThat(mainPage.getNavigationBar().getRepositoryName(), is(repositoryName)));
-        When("^user selects repository \"([^\"]*)\"$", (String repositoryName) -> mainPage = homePage.selectRepository(repositoryName));
+        When("^user selects repository \"([^\"]*)\"$", (String repositoryName) -> mainPage = landingPage.selectRepository(repositoryName));
         And("^user creates a new branch with name \"([^\"]*)\"$", (String branch) -> mainPage.createNewBranch(branch));
         And("^user clicks on Create New File button$", () -> newFilePage = mainPage.clickOnCreateNewFile());
         And("^user fills in Filename with \"([^\"]*)\"$", (String filename) -> newFilePage.setFilename(filename));
@@ -73,8 +73,8 @@ public class GitChallengeStepDefinitions implements En {
         Then("^user sees that pull request is merged$", () -> assertThat(pullRequestPage.isMerged(), is(true)));
         And("^user clicks on Settings button$", () -> settingsPage = mainPage.getNavigationBar().clickOnSettings());
         And("^user clicks on Delete Repository button$", () -> settingsPage.clickOnDeleteRepository());
-        And("^user enters repository name to confirm delete$", () -> homePage = settingsPage.confirmDelete(getProperty("github.password")));
-        Then("^user sees that repository \"([^\"]*)\" does not exist$", (String repositoryName) -> assertThat(homePage.repositoryExists(repositoryName), is(false)));
+        And("^user enters repository name to confirm delete$", () -> landingPage = settingsPage.confirmDelete(getProperty("github.password")));
+        Then("^user sees that repository \"([^\"]*)\" does not exist$", (String repositoryName) -> assertThat(landingPage.repositoryExists(repositoryName), is(false)));
     }
 
     private static void setUp() {

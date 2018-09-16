@@ -5,7 +5,7 @@ Feature: Git challenge
     When user fills in Login with data from file
     And user fills in Password with data from file
     And user clicks on Sign In button
-    Then user lands on home page
+    Then user lands on landing page
 
   Scenario: User creates a repository
     When user clicks on New Repository button
