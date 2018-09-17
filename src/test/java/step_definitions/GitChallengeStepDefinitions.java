@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java8.En;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.UrlValidator;
 import user_interface.page.LandingPage;
 import user_interface.page.LoginPage;
@@ -79,6 +80,16 @@ public class GitChallengeStepDefinitions implements En {
 
     private static void setUp() {
         closeWebDriver();
+        setDriver();
+        setTimeout();
+    }
+
+    private static void setTimeout() {
+        String timeout = getProperty("selenide.timeout");
+        Configuration.timeout = StringUtils.isNumeric(timeout) ? Integer.parseInt(timeout) * 1000 : 8000;
+    }
+
+    private static void setDriver() {
         String url = getProperty("selenide.grid");
         if (UrlValidator.getInstance().isValid(url)) {
             Configuration.remote = url;
@@ -87,8 +98,6 @@ public class GitChallengeStepDefinitions implements En {
             ChromeDriverManager.getInstance().setup();
             Configuration.browser = WebDriverRunner.CHROME;
         }
-        Configuration.timeout = 1000 * 8;
-        Configuration.collectionsTimeout = 1000 * 8;
     }
 
     private static String getProperty(String key) {
