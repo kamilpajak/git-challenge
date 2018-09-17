@@ -14,6 +14,7 @@ github.login=
 github.password=
 # ===================================================================
 selenide.grid=
+selenide.timeout=
 ```
 
 ## Running the tests
