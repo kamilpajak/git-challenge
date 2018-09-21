@@ -1,6 +1,6 @@
 ## Git Challenge: My reference user acceptance testing framework
 
-This project is designed to serve as my *reference user acceptance testing framework* I hope you'll find it useful!
+This project is designed to serve as my *reference user acceptance testing framework*. I hope you'll find it useful!
 
 ## Prerequisites
 
