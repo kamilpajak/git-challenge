@@ -1,10 +1,11 @@
-## Git Challenge: My reference user acceptance testing framework
+# Git Challenge
+*Reference user acceptance testing framework*
 
-This project is designed to serve as my *reference user acceptance testing framework*. I hope you'll find it useful!
+This project is designed to serve as my reference user acceptance testing framework. I hope you'll find it useful!
 
 ## Prerequisites
 
-Before running tests you need to create `application.properties` file and set login and password that will be used as GitHub credentials.
+Before running tests you need to create an `application.properties` file and set your GitHub credentials:
 
 ```
 # ===================================================================
@@ -20,12 +21,9 @@ selenide.timeout=
 
 ## Running the tests
 
-To run the tests execute following command
+To run the tests just execute `mvn clean test`
 
-```
-mvn clean test
-```
+## Pull requests welcome!
 
-## Q&A and issue tracking
-
-If you have any questions, feedback, or feature requests, don't hesitate to contact me.
+Spotted an error? Something doesn't make sense? Send me a [pull
+request](https://github.com/kamilpajak/git-challenge/pulls). Thanks!
