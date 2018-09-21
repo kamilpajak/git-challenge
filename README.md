@@ -1,10 +1,10 @@
-# git-challenge
+## Git Challenge: My reference user acceptance testing framework
 
-Solution of `git-challenge`
+This project is designed to serve as my *reference user acceptance testing framework* I hope you'll find it useful!
 
-### Prerequisites
+## Prerequisites
 
-Before running tests you need to copy `application.properties.example` to `application.properties` and set login and password that will be used as GitHub credentials.
+Before running tests you need to create `application.properties` file and set login and password that will be used as GitHub credentials.
 
 ```
 # ===================================================================
@@ -25,3 +25,7 @@ To run the tests execute following command
 ```
 mvn clean test
 ```
+
+## Q&A and issue tracking
+
+If you have any questions, feedback, or feature requests, don't hesitate to contact me.
