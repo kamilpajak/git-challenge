@@ -1,11 +1,21 @@
 package user_interface.page;
 
-import static com.codeborne.selenide.Selenide.*;
+import com.codeborne.selenide.Selenide;
+import setup.Environment;
+
+import static com.codeborne.selenide.Selenide.$;
+import static setup.Settings.getProperty;
+import static setup.Settings.setUp;
 
 public class LoginPage {
 
     public LoginPage() {
-        open("https://github.com/login");
+        setUp();
+        switch (Environment.valueOf(getProperty("github.environment").toUpperCase())) {
+            case PRODUCTION:
+                Selenide.open(Environment.PRODUCTION.url());
+                break;
+        }
     }
 
     public LoginPage setLogin(String login) {
@@ -18,8 +28,7 @@ public class LoginPage {
         return this;
     }
 
-    public LandingPage clickOnSignInButton() {
+    public void clickOnSignInButton() {
         $("[type=submit]").click();
-        return page(LandingPage.class);
     }
 }

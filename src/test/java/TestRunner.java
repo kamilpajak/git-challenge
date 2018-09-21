@@ -7,5 +7,5 @@ import org.junit.runner.RunWith;
         plugin = {"pretty"},
         monochrome = true
 )
-public class GitChallengeTest {
+public class TestRunner {
 }

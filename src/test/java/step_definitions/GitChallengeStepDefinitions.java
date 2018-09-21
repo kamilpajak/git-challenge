@@ -1,25 +1,14 @@
 package step_definitions;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import cucumber.api.java8.En;
-import io.github.bonigarcia.wdm.ChromeDriverManager;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.validator.routines.UrlValidator;
 import user_interface.page.LandingPage;
 import user_interface.page.LoginPage;
 import user_interface.page.repository.*;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
-import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static setup.Settings.getProperty;
 
 public class GitChallengeStepDefinitions implements En {
 
@@ -42,13 +31,13 @@ public class GitChallengeStepDefinitions implements En {
     private SettingsPage settingsPage;
 
     public GitChallengeStepDefinitions() {
-        Given("^user opens browser with GitHub login page$", () -> {
-            setUp();
-            loginPage = new LoginPage();
-        });
+        Given("^user opens browser with GitHub login page$", () -> loginPage = new LoginPage());
         When("^user fills in Login with data from file$", () -> loginPage.setLogin(getProperty("github.login")));
         And("^user fills in Password with data from file$", () -> loginPage.setPassword(getProperty("github.password")));
-        And("^user clicks on Sign In button$", () -> landingPage = loginPage.clickOnSignInButton());
+        And("^user clicks on Sign In button$", () -> {
+            loginPage.clickOnSignInButton();
+            landingPage = new LandingPage();
+        });
         Then("^user lands on landing page$", () -> assertThat(url(), is("https://github.com/")));
         When("^user clicks on New Repository button$", () -> newRepositoryPage = landingPage.clickOnNewRepositoryButton());
         And("^user fills in Repository name with \"([^\"]*)\"$", (String repositoryName) -> newRepositoryPage.enterName(repositoryName));
@@ -76,43 +65,5 @@ public class GitChallengeStepDefinitions implements En {
         And("^user clicks on Delete Repository button$", () -> settingsPage.clickOnDeleteRepository());
         And("^user enters repository name to confirm delete$", () -> landingPage = settingsPage.confirmDelete(getProperty("github.password")));
         Then("^user sees that repository \"([^\"]*)\" does not exist$", (String repositoryName) -> assertThat(landingPage.repositoryExists(repositoryName), is(false)));
-    }
-
-    private static void setUp() {
-        closeWebDriver();
-        setDriver();
-        setTimeout();
-    }
-
-    private static void setTimeout() {
-        String timeout = getProperty("selenide.timeout");
-        Configuration.timeout = StringUtils.isNumeric(timeout) ? Integer.parseInt(timeout) * 1000 : 8000;
-    }
-
-    private static void setDriver() {
-        String url = getProperty("selenide.grid");
-        if (UrlValidator.getInstance().isValid(url)) {
-            Configuration.remote = url;
-            Configuration.browser = "chrome";
-        } else {
-            ChromeDriverManager.getInstance().setup();
-            Configuration.browser = WebDriverRunner.CHROME;
-        }
-    }
-
-    private static String getProperty(String key) {
-        InputStream inputStream = null;
-        try {
-            inputStream = new FileInputStream("application.properties");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        Properties properties = new Properties();
-        try {
-            properties.load(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return properties.getProperty(key);
     }
 }
