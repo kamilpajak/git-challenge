@@ -8,8 +8,9 @@ Before running tests you need to copy `application.properties.example` to `appli
 
 ```
 # ===================================================================
-# GITHUB CREDENTIALS
+# GIT CHALLENGE
 # ===================================================================
+github.environment=production
 github.login=
 github.password=
 # ===================================================================
