@@ -30,6 +30,6 @@ public class MainPage extends RepositoryBasePage {
     }
 
     public boolean fileExists(String filename) {
-        return $(String.format(".files .js-navigation-item .content a[title=\"%s\"]", filename)).exists();
+        return $(String.format(".files .js-navigation-item .content a[title=\"%s\"]", filename)).should(Condition.appear).exists();
     }
 }
