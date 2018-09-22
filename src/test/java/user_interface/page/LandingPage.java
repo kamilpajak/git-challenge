@@ -21,12 +21,12 @@ public class LandingPage {
 
     public MainPage selectRepository(String name) {
         repositorySearchField.setValue(name);
-        $(String.format("[data-filterable-for=dashboard-repos-filter] [title=%s]", name)).should(Condition.exist).click();
+        $(String.format("[data-filterable-for=dashboard-repos-filter] [title=%s]", name)).should(Condition.appear).click();
         return page(MainPage.class);
     }
 
     public boolean repositoryExists(String name) {
         repositorySearchField.setValue(name);
-        return $(String.format("[data-filterable-for=dashboard-repos-filter] [title=%s]", name)).exists();
+        return $(String.format("[data-filterable-for=dashboard-repos-filter] [title=%s]", name)).shouldNot(Condition.appear).exists();
     }
 }
