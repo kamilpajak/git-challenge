@@ -1,4 +1,4 @@
-package user_interface.page;
+package user_interface.page_objects;
 
 import com.codeborne.selenide.Selenide;
 import setup.Environment;
