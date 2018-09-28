@@ -17,9 +17,14 @@ public class LoginStepDefinitions implements En {
 
     public LoginStepDefinitions() {
         Given("^I am on login page$", () -> loginPage = new LoginPage());
-        When("^I try to log in with \"([^\"]*)\" and \"([^\"]*)\"$", (String username, String password) -> loginPage.setUsername(username).setPassword(password).clickOnSignInButton());
+        When("^I try to log in with \"([^\"]*)\" and \"([^\"]*)\"$", (String username, String password)
+                -> loginPage.setUsername(username).setPassword(password).clickOnSignInButton());
         Then("^error message pops up$", () -> loginPage.errorMessagePopsUp());
-        When("^I log in$", () -> loginPage.setUsername(getProperty("github.login")).setPassword(getProperty("github.password")).clickOnSignInButton());
+        When("^I log in$", () -> {
+            String username = getProperty("github.username");
+            String password = getProperty("github.password");
+            loginPage.setUsername(username).setPassword(password).clickOnSignInButton();
+        });
         Then("^I am on landing page$", () -> {
             landingPage = new LandingPage();
             assertThat(url(), is("https://github.com/"));

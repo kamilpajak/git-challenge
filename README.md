@@ -12,7 +12,7 @@ Before running tests you need to create an `application.properties` file and set
 # GIT CHALLENGE
 # ===================================================================
 github.environment=production
-github.login=
+github.username=
 github.password=
 # ===================================================================
 selenide.grid=

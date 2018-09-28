@@ -2,7 +2,7 @@
 # GIT CHALLENGE
 # ===================================================================
 github.environment=production
-github.login=
+github.username=
 github.password=
 # ===================================================================
 selenide.grid=
