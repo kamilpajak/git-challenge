@@ -4,9 +4,6 @@ import cucumber.api.java8.En;
 import user_interface.page_objects.LandingPage;
 import user_interface.page_objects.LoginPage;
 
-import static com.codeborne.selenide.WebDriverRunner.url;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 import static setup.Settings.getProperty;
 
 public class LoginStepDefinitions implements En {
@@ -27,7 +24,7 @@ public class LoginStepDefinitions implements En {
         });
         Then("^I am on landing page$", () -> {
             landingPage = new LandingPage();
-            assertThat(url(), is("https://github.com/"));
+            landingPage.isDisplayed();
         });
     }
 }
