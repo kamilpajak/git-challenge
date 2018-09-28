@@ -13,7 +13,10 @@ public class LoginStepDefinitions implements En {
     private LandingPage landingPage;
 
     public LoginStepDefinitions() {
-        Given("^I am on login page$", () -> loginPage = new LoginPage());
+        Given("^I am on login page$", () -> {
+            loginPage = new LoginPage();
+            loginPage.isDisplayed();
+        });
         When("^I try to log in with \"([^\"]*)\" and \"([^\"]*)\"$", (String username, String password)
                 -> loginPage.setUsername(username).setPassword(password).clickOnSignInButton());
         Then("^error message pops up$", () -> loginPage.errorMessagePopsUp());
