@@ -18,12 +18,7 @@ Feature: GitHub user logs into application
       | !@#$%^&       | test               |
       | test@test.com | incorrect_password |
 
-  Scenario: User logs in
-    Given I am on login page
-    When I log in
-    Then I am on landing page
-
-  Scenario: User logs out
+  Scenario: User logs in and logs out
     Given I am on login page
     When I log in
     And I am on landing page
