@@ -13,7 +13,12 @@ Feature: GitHub user logs into application
       | !@#$%^&       | test               |
       | test@test.com | incorrect_password |
 
-  Scenario: User logs in application
+  Scenario: User logs in
     Given I am on login page
     When I log in
     Then I am on landing page
+
+  Scenario: User logs out
+    Given I am logged in
+    When I log out
+    Then I am on GitHub main page

@@ -21,6 +21,7 @@ public class LoginPage implements PageObjectModel {
                 Selenide.open(Environment.PRODUCTION.url());
                 break;
         }
+        isDisplayed();
     }
 
     public LoginPage setUsername(String login) {
