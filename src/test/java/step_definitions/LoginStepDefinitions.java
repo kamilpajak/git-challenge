@@ -33,7 +33,9 @@ public class LoginStepDefinitions implements En {
         });
         Given("^I am logged in$", () -> {
             gitHubMainPage = GitHubMainPage.open();
+            gitHubMainPage.isDisplayed();
             loginPage = gitHubMainPage.clickOnSignIn();
+            loginPage.isDisplayed();
             loginPage.setUsername(username).setPassword(password).clickOnSignInButton();
             landingPage = new LandingPage();
             landingPage.isDisplayed();
