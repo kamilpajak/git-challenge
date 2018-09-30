@@ -31,15 +31,6 @@ public class LoginStepDefinitions implements En {
             landingPage = new LandingPage();
             landingPage.isDisplayed();
         });
-        Given("^I am logged in$", () -> {
-            gitHubMainPage = GitHubMainPage.open();
-            gitHubMainPage.isDisplayed();
-            loginPage = gitHubMainPage.clickOnSignIn();
-            loginPage.isDisplayed();
-            loginPage.setUsername(username).setPassword(password).clickOnSignInButton();
-            landingPage = new LandingPage();
-            landingPage.isDisplayed();
-        });
         When("^I log out$", () -> gitHubMainPage = landingPage.logout());
     }
 }
