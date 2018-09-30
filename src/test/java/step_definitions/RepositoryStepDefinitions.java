@@ -39,5 +39,8 @@ public class RepositoryStepDefinitions implements En {
                     .submit();
         });
         Then("^I am on repository page$", () -> repositoryPage.isDisplayed());
+        When("^I delete \"([^\"]*)\" repository$", (String name) -> {
+            
+        });
     }
 }

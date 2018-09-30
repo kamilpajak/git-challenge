@@ -7,3 +7,8 @@ Feature: GitHub user makes changes on repositories
     Given I am logged in
     When I create "lorem-ipsum-dolor" repository
     Then I am on repository page
+
+  Scenario: User deletes repository
+    Given I am logged in
+    When I delete "lorem-ipsum-dolor" repository
+    Then I am on landing page
