@@ -20,6 +20,8 @@ public class RepositoryStepDefinitions implements En {
 
     private CreateNewRepositoryPage createNewRepositoryPage;
 
+    private SettingsPage settingsPage;
+
     public RepositoryStepDefinitions() {
         Given("^I am logged in$", () -> {
             gitHubMainPage = GitHubMainPage.open();
@@ -30,7 +32,7 @@ public class RepositoryStepDefinitions implements En {
             landingPage = new LandingPage();
             landingPage.isDisplayed();
         });
-        When("^I create \"([^\"]*)\" repository$", (String name) -> {
+        When("^I create a \"([^\"]*)\" repository$", (String name) -> {
             createNewRepositoryPage = landingPage.clickOnNewRepository();
             createNewRepositoryPage.isDisplayed();
             repositoryPage = createNewRepositoryPage.setRepositoryName(name)
@@ -39,8 +41,10 @@ public class RepositoryStepDefinitions implements En {
                     .submit();
         });
         Then("^I am on repository page$", () -> repositoryPage.isDisplayed());
-        When("^I delete \"([^\"]*)\" repository$", (String name) -> {
-            
+        When("^I delete a \"([^\"]*)\" repository$", (String name) -> {
+            settingsPage = repositoryPage.settings();
+            settingsPage.isDisplayed();
+            landingPage = settingsPage.clickOnDeleteRepository().confirmDelete(password);
         });
     }
 }

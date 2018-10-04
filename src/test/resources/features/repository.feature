@@ -3,12 +3,9 @@ Feature: GitHub user makes changes on repositories
   I want to make changes on repositories,
   So that I can create and delete them.
 
-  Scenario: User creates new repository
+  Scenario: User creates and then deletes a repository
     Given I am logged in
-    When I create "lorem-ipsum-dolor" repository
-    Then I am on repository page
-
-  Scenario: User deletes repository
-    Given I am logged in
-    When I delete "lorem-ipsum-dolor" repository
+    And I create a "lorem-ipsum-dolor" repository
+    When I am on repository page
+    And I delete a "lorem-ipsum-dolor" repository
     Then I am on landing page
