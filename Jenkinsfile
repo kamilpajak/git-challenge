@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Initialization') {
             steps {
-                withCredentials([file(credentialsId: 'git-challenge.application.properties', variable: 'SECRET')]) {
+                withCredentials([file(credentialsId: 'git-challenge.application_properties', variable: 'SECRET')]) {
                     sh 'cp $SECRET application.properties'
                 }
             }
