@@ -44,7 +44,7 @@ public class Settings {
     }
 
     private static void setDriver() {
-        String url = getProperty("selenide.grid");
+        String url = getProperty("selenium.grid");
         if (UrlValidator.getInstance().isValid(url)) {
             Configuration.remote = url;
             Configuration.browser = "chrome";

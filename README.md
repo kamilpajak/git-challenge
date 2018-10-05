@@ -9,13 +9,13 @@ Before running tests you need to create an `application.properties` file and set
 
 ```
 # ===================================================================
-# GIT CHALLENGE
+# GIT CHALLENGE - REFERENCE USER ACCEPTANCE TESTS
 # ===================================================================
 github.environment=production
 github.username=
 github.password=
 # ===================================================================
-selenide.grid=
+selenium.grid=
 selenide.timeout=
 ```
 
