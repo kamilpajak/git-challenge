@@ -15,6 +15,7 @@ Feature: GitHub user logs into application
 
     Examples:
       | USERNAME      | PASSWORD           |
+      | !@#$%^&       | test               |
       | test@test.com | incorrect_password |
 
   Scenario: User logs in and logs out
