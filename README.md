@@ -1,7 +1,7 @@
 # Git Challenge
-*Reference user acceptance testing framework*
+*Reference user acceptance tests*
 
-This project is designed to serve as my reference user acceptance testing framework. I hope you'll find it useful!
+This project is designed to serve as my reference user acceptance tests. I hope you'll find it useful!
 
 ## Prerequisites
 
@@ -9,13 +9,13 @@ Before running tests you need to create an `application.properties` file and set
 
 ```
 # ===================================================================
-# GIT CHALLENGE
+# GIT CHALLENGE - REFERENCE USER ACCEPTANCE TESTS
 # ===================================================================
 github.environment=production
-github.login=
+github.username=
 github.password=
 # ===================================================================
-selenide.grid=
+selenium.grid=
 selenide.timeout=
 ```
 
