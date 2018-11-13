@@ -5,12 +5,12 @@ import user_interface.page_objects.GitHubMainPage;
 import user_interface.page_objects.LandingPage;
 import user_interface.page_objects.LoginPage;
 
-import static setup.Settings.getProperty;
+import static setup.Settings.getPropertyFromFile;
 
 public class LoginStepDefinitions implements En {
 
-    private final String username = getProperty("github.username");
-    private final String password = getProperty("github.password");
+    private final String username = getPropertyFromFile("github.username");
+    private final String password = getPropertyFromFile("github.password");
 
     private LoginPage loginPage;
 
