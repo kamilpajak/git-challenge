@@ -3,12 +3,12 @@ package step_definitions;
 import cucumber.api.java8.En;
 import user_interface.page_objects.*;
 
-import static setup.Settings.getProperty;
+import static setup.Settings.getPropertyFromFile;
 
 public class RepositoryStepDefinitions implements En {
 
-    private final String username = getProperty("github.username");
-    private final String password = getProperty("github.password");
+    private final String username = getPropertyFromFile("github.username");
+    private final String password = getPropertyFromFile("github.password");
 
     private GitHubMainPage gitHubMainPage;
 

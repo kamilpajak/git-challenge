@@ -7,7 +7,7 @@ import setup.Environment;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
-import static setup.Settings.getProperty;
+import static setup.Settings.getPropertyFromFile;
 import static setup.Settings.setUp;
 
 public class GitHubMainPage implements PageObjectModel {
@@ -17,7 +17,7 @@ public class GitHubMainPage implements PageObjectModel {
 
     public static GitHubMainPage open() {
         setUp();
-        Environment environment = Environment.valueOf(getProperty("github.environment").toUpperCase());
+        Environment environment = Environment.valueOf(getPropertyFromFile("github.environment").toUpperCase());
         switch (environment) {
             case PRODUCTION:
                 Selenide.open(Environment.PRODUCTION.url());
