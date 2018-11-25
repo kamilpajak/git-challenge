@@ -15,8 +15,6 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.Properties;
 
-import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
-
 public final class Settings {
 
     static String scenario;
@@ -33,7 +31,6 @@ public final class Settings {
     }
 
     public static void setUp() {
-        closeWebDriver();
         setDriver();
         setTimeout();
     }
