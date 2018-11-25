@@ -1,4 +1,4 @@
-package user_interface.page_objects;
+package user_interface;
 
 public interface PageObjectModel {
 

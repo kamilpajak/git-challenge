@@ -1,9 +1,9 @@
-package user_interface.page_objects;
+package user_interface;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 public class SettingsPage extends Repository {
 
@@ -18,7 +18,7 @@ public class SettingsPage extends Repository {
         if ($("#sudo_password").exists()) {
             $("#sudo_password").setValue(password).pressEnter();
         }
-        return page(LandingPage.class);
+        return Selenide.page(LandingPage.class);
     }
 
     @Override
