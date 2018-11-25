@@ -10,33 +10,26 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.Properties;
 
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
-public class Settings {
+public final class Settings {
 
     static String scenario;
 
-    public static String getPropertyFromFile(String key) {
-        InputStream inputStream = null;
+    public static Properties properties = new Properties();
+
+    static {
+        String appConfigPath = "application.properties";
         try {
-            inputStream = new FileInputStream("application.properties");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        Properties properties = new Properties();
-        try {
-            properties.load(inputStream);
+            properties.load(new FileInputStream(appConfigPath));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return properties.getProperty(key);
     }
 
     public static void setUp() {
@@ -46,12 +39,12 @@ public class Settings {
     }
 
     private static void setTimeout() {
-        String timeout = getPropertyFromFile("selenide.timeout");
+        String timeout = properties.getProperty("selenide.timeout");
         Configuration.timeout = StringUtils.isNumeric(timeout) ? Integer.parseInt(timeout) * 1000 : 8000;
     }
 
     private static void setDriver() {
-        String url = getPropertyFromFile("selenium.grid");
+        String url = properties.getProperty("selenium.grid");
         UrlValidator urlValidator = new UrlValidator(UrlValidator.ALLOW_LOCAL_URLS);
         if (urlValidator.isValid(url)) {
             setupRemoteWebDriver(url);

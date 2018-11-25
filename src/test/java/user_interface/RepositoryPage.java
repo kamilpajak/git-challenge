@@ -1,4 +1,4 @@
-package user_interface.page_objects;
+package user_interface;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.url;
