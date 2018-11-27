@@ -20,9 +20,4 @@ public class SettingsPage extends Repository {
         }
         return page(LandingPage.class);
     }
-
-    @Override
-    public void isDisplayed() {
-        $(".reponav .selected").shouldHave(Condition.text("Settings"));
-    }
 }
