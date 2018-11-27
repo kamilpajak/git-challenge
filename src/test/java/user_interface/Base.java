@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-abstract class Base implements PageObjectModel {
+abstract class Base {
 
     public GitHubMainPage logout() {
         SelenideElement userButton = $("#user-links li", 2);

@@ -13,5 +13,4 @@ public enum Environment {
     public String url() {
         return url;
     }
-
 }
