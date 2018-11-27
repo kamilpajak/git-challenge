@@ -2,7 +2,7 @@ package setup;
 
 public enum Environment {
 
-    PRODUCTION("https://github.com/login/");
+    PRODUCTION("https://github.com");
 
     private final String url;
 
@@ -13,5 +13,4 @@ public enum Environment {
     public String url() {
         return url;
     }
-
 }
