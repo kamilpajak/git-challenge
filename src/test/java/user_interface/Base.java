@@ -15,12 +15,4 @@ abstract class Base {
         signOut.click();
         return page(GitHubMainPage.class);
     }
-
-    public CreateNewRepositoryPage clickOnNewRepository() {
-        SelenideElement plusButton = $("#user-links li", 1);
-        plusButton.click();
-        SelenideElement newRepository = plusButton.$(byText("New repository"));
-        newRepository.click();
-        return page(CreateNewRepositoryPage.class);
-    }
 }
