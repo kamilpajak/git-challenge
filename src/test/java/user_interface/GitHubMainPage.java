@@ -1,11 +1,9 @@
 package user_interface;
 
-import com.codeborne.selenide.Selenide;
 import setup.Environment;
 
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.Selenide.*;
 import static setup.Settings.properties;
 import static setup.Settings.setUp;
 
@@ -16,7 +14,7 @@ public class GitHubMainPage {
         Environment environment = Environment.valueOf(properties.getProperty("github.environment").toUpperCase());
         switch (environment) {
             case PRODUCTION:
-                Selenide.open(Environment.PRODUCTION.url());
+                open(Environment.PRODUCTION.url());
                 break;
         }
     }
