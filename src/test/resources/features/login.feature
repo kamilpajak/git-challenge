@@ -1,7 +1,7 @@
 Feature: GitHub user logs into application
   As a GitHub user,
-  I want to log in to application,
-  So that I can perform actions.
+  I want to log in,
+  So that I can use GitHub.
 
   Background: User navigates to login page
     When I enter GitHub address
